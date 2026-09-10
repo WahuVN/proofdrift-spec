@@ -1,0 +1,16 @@
+{
+  "$document": {
+    "decision": "MAYBE",
+    "decision_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "decision_id": "dec-1",
+    "diagnostics": [],
+    "policy_bundle_digest": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+    "policy_ids": [
+      "safe-local-read"
+    ],
+    "reason_codes": [],
+    "request_id": "req-1",
+    "schema_version": "1.0.0"
+  },
+  "$expected_schema": "policy-decision"
+}

@@ -1,0 +1,21 @@
+{
+  "canonicalization": "proofdrift-json-v1",
+  "schema_version": "1.0.0",
+  "schemas": [
+    "agent-event.schema.json",
+    "artifact-identity.schema.json",
+    "baseline-snapshot.schema.json",
+    "bundle-manifest.schema.json",
+    "capability.schema.json",
+    "evidence-value.schema.json",
+    "finding.schema.json",
+    "fixture-case.schema.json",
+    "patch-impact.schema.json",
+    "policy-decision.schema.json",
+    "policy-request.schema.json",
+    "provenance-edge.schema.json",
+    "test-evidence.schema.json",
+    "trust-diff.schema.json",
+    "trust-report.schema.json"
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "category": "patch",
+  "description": "Patch auth.",
+  "expect": {
+    "notes": [
+      "classify auth sensitive surface"
+    ]
+  },
+  "fixture_id": "patch-auth",
+  "input": {
+    "changed_files": [
+      "src/auth.rs"
+    ]
+  },
+  "schema_version": "1.0.0"
+}

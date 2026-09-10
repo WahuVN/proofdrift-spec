@@ -1,0 +1,16 @@
+{
+  "category": "patch",
+  "description": "Patch concurrency.",
+  "expect": {
+    "notes": [
+      "classify concurrency sensitive surface"
+    ]
+  },
+  "fixture_id": "patch-concurrency",
+  "input": {
+    "changed_files": [
+      "src/runtime/locks.rs"
+    ]
+  },
+  "schema_version": "1.0.0"
+}

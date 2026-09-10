@@ -1,0 +1,15 @@
+{
+  "category": "runtime",
+  "description": "Git force push.",
+  "expect": {
+    "reason_codes": [
+      "policy.explicit_deny"
+    ]
+  },
+  "fixture_id": "git-force-push",
+  "input": {
+    "action": "git.force_push",
+    "resource": "origin/main"
+  },
+  "schema_version": "1.0.0"
+}

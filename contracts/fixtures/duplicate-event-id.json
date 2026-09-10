@@ -1,0 +1,17 @@
+{
+  "category": "edge",
+  "description": "Duplicate event id.",
+  "expect": {
+    "invariants": [
+      "duplicate_event_rejected"
+    ]
+  },
+  "fixture_id": "duplicate-event-id",
+  "input": {
+    "event_ids": [
+      "e1",
+      "e1"
+    ]
+  },
+  "schema_version": "1.0.0"
+}

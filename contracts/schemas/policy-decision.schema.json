@@ -1,0 +1,72 @@
+{
+  "$id": "https://raw.githubusercontent.com/WahuVN/proofdrift-spec/main/contracts/schemas/policy-decision.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "decision": {
+      "enum": [
+        "ALLOW",
+        "DENY",
+        "REQUIRE_APPROVAL",
+        "OBSERVE"
+      ],
+      "minLength": 1,
+      "type": "string"
+    },
+    "decision_hash": {
+      "minLength": 1,
+      "pattern": "^(?:sha256:)?[0-9a-fA-F]{64}$",
+      "type": "string"
+    },
+    "decision_id": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "diagnostics": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "policy_bundle_digest": {
+      "minLength": 1,
+      "pattern": "^(?:sha256:)?[0-9a-fA-F]{64}$",
+      "type": "string"
+    },
+    "policy_ids": {
+      "items": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "type": "array",
+      "uniqueItems": true
+    },
+    "reason_codes": {
+      "items": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "type": "array",
+      "uniqueItems": true
+    },
+    "request_id": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "schema_version": {
+      "minLength": 1,
+      "pattern": "^1\\.[0-9]+\\.[0-9]+(?:[-+][0-9A-Za-z.-]+)?$",
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema_version",
+    "decision_id",
+    "request_id",
+    "decision",
+    "decision_hash",
+    "policy_bundle_digest"
+  ],
+  "title": "PolicyDecision",
+  "type": "object"
+}

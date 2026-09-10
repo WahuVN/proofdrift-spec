@@ -1,0 +1,62 @@
+{
+  "$id": "https://raw.githubusercontent.com/WahuVN/proofdrift-spec/main/contracts/schemas/evidence-value.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "allOf": [
+    {
+      "if": {
+        "required": [
+          "confidence"
+        ]
+      },
+      "then": {
+        "properties": {
+          "evidence_kind": {
+            "const": "derived"
+          }
+        }
+      }
+    }
+  ],
+  "properties": {
+    "confidence": {
+      "maximum": 1,
+      "minimum": 0,
+      "type": "number"
+    },
+    "evidence_kind": {
+      "enum": [
+        "observed",
+        "derived",
+        "declared",
+        "external"
+      ],
+      "minLength": 1,
+      "type": "string"
+    },
+    "schema_version": {
+      "minLength": 1,
+      "pattern": "^1\\.[0-9]+\\.[0-9]+(?:[-+][0-9A-Za-z.-]+)?$",
+      "type": "string"
+    },
+    "source_refs": {
+      "items": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "timestamp": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "value": {}
+  },
+  "required": [
+    "schema_version",
+    "value",
+    "evidence_kind"
+  ],
+  "title": "EvidenceValue",
+  "type": "object"
+}

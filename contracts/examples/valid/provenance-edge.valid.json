@@ -1,0 +1,9 @@
+{
+  "evidence_kind": "observed",
+  "from_artifact_id": "agent:test",
+  "relation": "loads",
+  "schema_version": "1.0.0",
+  "source": "runtime:mcp",
+  "to_artifact_id": "skill:review",
+  "verified": true
+}

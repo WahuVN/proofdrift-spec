@@ -1,0 +1,16 @@
+{
+  "$document": {
+    "category": "provenance",
+    "explanation": "Source has no immutable revision.",
+    "finding_id": "finding-1",
+    "fingerprint": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "remediation": "Pin an immutable commit or digest.",
+    "rule_id": "source.unpinned",
+    "rule_version": "1",
+    "schema_version": "1.0.0",
+    "severity": "urgent",
+    "status": "new",
+    "title": "Unpinned source"
+  },
+  "$expected_schema": "finding"
+}

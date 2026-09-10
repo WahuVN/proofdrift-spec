@@ -1,0 +1,14 @@
+{
+  "category": "provenance",
+  "description": "Unpinned mcp.",
+  "expect": {
+    "reason_codes": [
+      "provenance.unverified"
+    ]
+  },
+  "fixture_id": "unpinned-mcp",
+  "input": {
+    "source": "git+https://example.invalid/server.git@main"
+  },
+  "schema_version": "1.0.0"
+}

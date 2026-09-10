@@ -1,0 +1,15 @@
+{
+  "category": "drift",
+  "description": "Capability expansion.",
+  "expect": {
+    "change_types": [
+      "CAPABILITY_EXPANDED"
+    ]
+  },
+  "fixture_id": "capability-expansion",
+  "input": {
+    "after": "**",
+    "before": "github.com/api/**"
+  },
+  "schema_version": "1.0.0"
+}

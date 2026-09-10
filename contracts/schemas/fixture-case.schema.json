@@ -1,0 +1,80 @@
+{
+  "$id": "https://raw.githubusercontent.com/WahuVN/proofdrift-spec/main/contracts/schemas/fixture-case.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "category": {
+      "enum": [
+        "safe",
+        "malicious",
+        "drift",
+        "edge",
+        "security",
+        "patch",
+        "provenance",
+        "runtime"
+      ],
+      "minLength": 1,
+      "type": "string"
+    },
+    "description": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "expect": {
+      "additionalProperties": true,
+      "properties": {
+        "change_types": {
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "invariants": {
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "notes": {
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "reason_codes": {
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "required": [],
+      "type": "object"
+    },
+    "fixture_id": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "input": {},
+    "schema_version": {
+      "minLength": 1,
+      "pattern": "^1\\.[0-9]+\\.[0-9]+(?:[-+][0-9A-Za-z.-]+)?$",
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema_version",
+    "fixture_id",
+    "category",
+    "description",
+    "input",
+    "expect"
+  ],
+  "title": "FixtureCase",
+  "type": "object"
+}

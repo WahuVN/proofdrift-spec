@@ -1,0 +1,9 @@
+{
+  "$document": {
+    "artifact_type": "file",
+    "name": "x",
+    "provenance_status": "unknown",
+    "schema_version": "1.0.0"
+  },
+  "$expected_schema": "artifact-identity"
+}

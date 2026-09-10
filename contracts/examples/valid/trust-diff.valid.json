@@ -1,0 +1,16 @@
+{
+  "baseline_digest": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "baseline_name": "trusted-main",
+  "changes": [
+    {
+      "after": "**",
+      "before": "github.com:443",
+      "capability_id": "network.connect",
+      "change_type": "CAPABILITY_EXPANDED",
+      "explanation": "Network scope expanded.",
+      "severity": "high"
+    }
+  ],
+  "current_digest": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+  "schema_version": "1.0.0"
+}

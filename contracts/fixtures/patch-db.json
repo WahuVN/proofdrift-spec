@@ -1,0 +1,16 @@
+{
+  "category": "patch",
+  "description": "Patch db.",
+  "expect": {
+    "notes": [
+      "classify db sensitive surface"
+    ]
+  },
+  "fixture_id": "patch-db",
+  "input": {
+    "changed_files": [
+      "src/db/transaction.rs"
+    ]
+  },
+  "schema_version": "1.0.0"
+}

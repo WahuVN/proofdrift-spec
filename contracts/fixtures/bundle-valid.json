@@ -1,0 +1,14 @@
+{
+  "category": "safe",
+  "description": "Bundle valid.",
+  "expect": {
+    "invariants": [
+      "offline_verify_pass"
+    ]
+  },
+  "fixture_id": "bundle-valid",
+  "input": {
+    "manifest_digest": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+  },
+  "schema_version": "1.0.0"
+}

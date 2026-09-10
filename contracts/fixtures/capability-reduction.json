@@ -1,0 +1,15 @@
+{
+  "category": "drift",
+  "description": "Capability reduction.",
+  "expect": {
+    "change_types": [
+      "CAPABILITY_REDUCED"
+    ]
+  },
+  "fixture_id": "capability-reduction",
+  "input": {
+    "after": "github.com/api/**",
+    "before": "**"
+  },
+  "schema_version": "1.0.0"
+}

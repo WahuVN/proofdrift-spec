@@ -1,0 +1,15 @@
+{
+  "category": "runtime",
+  "description": "Observed not enforced.",
+  "expect": {
+    "invariants": [
+      "never_label_observed_as_isolated"
+    ]
+  },
+  "fixture_id": "observed-not-enforced",
+  "input": {
+    "enforcement_level": "L0",
+    "observed": true
+  },
+  "schema_version": "1.0.0"
+}

@@ -1,0 +1,20 @@
+{
+  "category": "drift",
+  "description": "Mcp tool schema drift.",
+  "expect": {
+    "change_types": [
+      "TOOL_SCHEMA_DRIFT",
+      "CAPABILITY_EXPANDED"
+    ]
+  },
+  "fixture_id": "mcp-tool-schema-drift",
+  "input": {
+    "after": {
+      "readOnlyHint": false
+    },
+    "before": {
+      "readOnlyHint": true
+    }
+  },
+  "schema_version": "1.0.0"
+}

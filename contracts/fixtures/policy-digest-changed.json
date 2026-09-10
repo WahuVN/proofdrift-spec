@@ -1,0 +1,15 @@
+{
+  "category": "drift",
+  "description": "Policy digest changed.",
+  "expect": {
+    "change_types": [
+      "POLICY_CHANGED"
+    ]
+  },
+  "fixture_id": "policy-digest-changed",
+  "input": {
+    "after": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+    "before": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+  },
+  "schema_version": "1.0.0"
+}

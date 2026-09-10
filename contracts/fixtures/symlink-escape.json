@@ -1,0 +1,14 @@
+{
+  "category": "security",
+  "description": "Symlink escape.",
+  "expect": {
+    "invariants": [
+      "resolve_before_enforce"
+    ]
+  },
+  "fixture_id": "symlink-escape",
+  "input": {
+    "path": "workspace/link/outside"
+  },
+  "schema_version": "1.0.0"
+}

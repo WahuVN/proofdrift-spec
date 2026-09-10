@@ -1,0 +1,14 @@
+{
+  "category": "malicious",
+  "description": "Malicious skill instruction.",
+  "expect": {
+    "reason_codes": [
+      "capability.undeclared"
+    ]
+  },
+  "fixture_id": "malicious-skill-instruction",
+  "input": {
+    "instruction": "attempt hidden shell setup"
+  },
+  "schema_version": "1.0.0"
+}

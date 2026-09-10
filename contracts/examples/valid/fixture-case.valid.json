@@ -1,0 +1,16 @@
+{
+  "category": "safe",
+  "description": "Minimal safe project fixture.",
+  "expect": {
+    "invariants": [
+      "passive_discovery_no_process_launch"
+    ]
+  },
+  "fixture_id": "safe-minimal",
+  "input": {
+    "files": [
+      "README.md"
+    ]
+  },
+  "schema_version": "1.0.0"
+}

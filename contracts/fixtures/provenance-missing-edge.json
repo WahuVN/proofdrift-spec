@@ -1,0 +1,16 @@
+{
+  "category": "provenance",
+  "description": "Provenance missing edge.",
+  "expect": {
+    "reason_codes": [
+      "provenance.unverified"
+    ]
+  },
+  "fixture_id": "provenance-missing-edge",
+  "input": {
+    "edge": null,
+    "from": "agent:a",
+    "to": "skill:b"
+  },
+  "schema_version": "1.0.0"
+}

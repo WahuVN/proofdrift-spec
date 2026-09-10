@@ -1,0 +1,14 @@
+{
+  "category": "security",
+  "description": "Path traversal.",
+  "expect": {
+    "invariants": [
+      "reject_outside_root"
+    ]
+  },
+  "fixture_id": "path-traversal",
+  "input": {
+    "path": "../../outside"
+  },
+  "schema_version": "1.0.0"
+}

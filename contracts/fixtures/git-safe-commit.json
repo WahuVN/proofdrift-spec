@@ -1,0 +1,15 @@
+{
+  "category": "safe",
+  "description": "Git safe commit.",
+  "expect": {
+    "invariants": [
+      "brokered_action_distinguished"
+    ]
+  },
+  "fixture_id": "git-safe-commit",
+  "input": {
+    "action": "git.commit",
+    "resource": "local"
+  },
+  "schema_version": "1.0.0"
+}

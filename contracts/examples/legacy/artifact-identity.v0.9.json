@@ -1,0 +1,11 @@
+{
+  "artifact_id": "skill:legacy",
+  "future_vendor_field": {
+    "preserve": true
+  },
+  "name": "legacy",
+  "provenance_status": "declared",
+  "schema_version": "0.9.0",
+  "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "type": "skill"
+}

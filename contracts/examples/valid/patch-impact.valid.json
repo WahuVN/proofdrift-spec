@@ -1,0 +1,21 @@
+{
+  "analysis_confidence": {
+    "path_classifier": 1.0
+  },
+  "base": "origin/main",
+  "blast_radius": {
+    "components": {
+      "auth": 40
+    },
+    "explanation": "Authentication code changed.",
+    "score": 40
+  },
+  "changed_files": [
+    "src/auth.rs"
+  ],
+  "head": "HEAD",
+  "schema_version": "1.0.0",
+  "sensitive_surfaces": [
+    "auth"
+  ]
+}

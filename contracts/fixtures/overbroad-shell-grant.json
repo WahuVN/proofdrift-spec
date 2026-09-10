@@ -1,0 +1,15 @@
+{
+  "category": "security",
+  "description": "Overbroad shell grant.",
+  "expect": {
+    "invariants": [
+      "finding_has_evidence"
+    ]
+  },
+  "fixture_id": "overbroad-shell-grant",
+  "input": {
+    "capability": "process.exec",
+    "resource": "**"
+  },
+  "schema_version": "1.0.0"
+}

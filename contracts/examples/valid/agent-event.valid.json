@@ -1,0 +1,14 @@
+{
+  "actor": "agent:test",
+  "adapter_id": "mcp",
+  "enforcement_level": "L1",
+  "event_id": "evt-1",
+  "event_type": "mcp.tools/call",
+  "outcome": "allowed",
+  "proposed_action": "mcp.call",
+  "resource": "tool:read",
+  "schema_version": "1.0.0",
+  "sequence": 1,
+  "session_id": "sess-1",
+  "timestamp_wall": "2026-09-10T00:00:00Z"
+}

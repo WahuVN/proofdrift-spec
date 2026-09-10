@@ -1,0 +1,19 @@
+{
+  "$document": {
+    "action_family": "network.connect",
+    "capability_id": "network.connect",
+    "constraints": {
+      "tls": true
+    },
+    "evidence_refs": [
+      "artifact:skill:review"
+    ],
+    "resource_selector": "github.com:443",
+    "risk_tags": [
+      "network"
+    ],
+    "schema_version": "1.0.0",
+    "source": "guessed"
+  },
+  "$expected_schema": "capability"
+}

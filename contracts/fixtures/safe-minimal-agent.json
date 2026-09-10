@@ -1,0 +1,15 @@
+{
+  "category": "safe",
+  "description": "Safe minimal agent.",
+  "expect": {
+    "invariants": [
+      "no_high_findings"
+    ]
+  },
+  "fixture_id": "safe-minimal-agent",
+  "input": {
+    "capability": "fs.read",
+    "component": "skill"
+  },
+  "schema_version": "1.0.0"
+}

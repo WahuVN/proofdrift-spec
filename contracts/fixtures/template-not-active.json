@@ -1,0 +1,15 @@
+{
+  "category": "edge",
+  "description": "Template not active.",
+  "expect": {
+    "invariants": [
+      "do_not_treat_template_as_active"
+    ]
+  },
+  "fixture_id": "template-not-active",
+  "input": {
+    "active": false,
+    "path": "docs/example/.mcp.json"
+  },
+  "schema_version": "1.0.0"
+}

@@ -1,0 +1,15 @@
+{
+  "category": "security",
+  "description": "Bundle corrupted byte.",
+  "expect": {
+    "reason_codes": [
+      "evidence.integrity_failure"
+    ]
+  },
+  "fixture_id": "bundle-corrupted-byte",
+  "input": {
+    "actual_digest": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+    "manifest_digest": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+  },
+  "schema_version": "1.0.0"
+}

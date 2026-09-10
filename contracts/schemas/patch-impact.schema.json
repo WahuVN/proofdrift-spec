@@ -1,0 +1,118 @@
+{
+  "$id": "https://raw.githubusercontent.com/WahuVN/proofdrift-spec/main/contracts/schemas/patch-impact.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "affected_modules": {
+      "items": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "analysis_confidence": {
+      "additionalProperties": {
+        "maximum": 1,
+        "minimum": 0,
+        "type": "number"
+      },
+      "type": "object"
+    },
+    "base": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "blast_radius": {
+      "additionalProperties": true,
+      "properties": {
+        "components": {
+          "additionalProperties": {
+            "minimum": 0,
+            "type": "integer"
+          },
+          "type": "object"
+        },
+        "explanation": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "score": {
+          "minimum": 0,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "score",
+        "explanation"
+      ],
+      "type": "object"
+    },
+    "changed_files": {
+      "items": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "changed_symbols": {
+      "items": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "dependency_edges": {
+      "items": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "evidence_refs": {
+      "items": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "head": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "schema_version": {
+      "minLength": 1,
+      "pattern": "^1\\.[0-9]+\\.[0-9]+(?:[-+][0-9A-Za-z.-]+)?$",
+      "type": "string"
+    },
+    "sensitive_surfaces": {
+      "items": {
+        "enum": [
+          "auth",
+          "crypto",
+          "secret",
+          "db",
+          "migration",
+          "concurrency",
+          "network",
+          "public_api",
+          "serialization",
+          "config",
+          "build",
+          "deployment"
+        ],
+        "minLength": 1,
+        "type": "string"
+      },
+      "type": "array",
+      "uniqueItems": true
+    }
+  },
+  "required": [
+    "schema_version",
+    "base",
+    "head",
+    "blast_radius"
+  ],
+  "title": "PatchImpact",
+  "type": "object"
+}

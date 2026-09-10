@@ -1,0 +1,105 @@
+{
+  "$id": "https://raw.githubusercontent.com/WahuVN/proofdrift-spec/main/contracts/schemas/trust-diff.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "baseline_digest": {
+      "minLength": 1,
+      "pattern": "^(?:sha256:)?[0-9a-fA-F]{64}$",
+      "type": "string"
+    },
+    "baseline_name": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "changes": {
+      "items": {
+        "additionalProperties": true,
+        "properties": {
+          "after": {},
+          "artifact_id": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "before": {},
+          "capability_id": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "change_type": {
+            "enum": [
+              "COMPONENT_ADDED",
+              "COMPONENT_REMOVED",
+              "COMPONENT_CHANGED",
+              "SOURCE_REF_DRIFT",
+              "HASH_DRIFT",
+              "TOOL_SCHEMA_DRIFT",
+              "CAPABILITY_ADDED",
+              "CAPABILITY_REMOVED",
+              "CAPABILITY_EXPANDED",
+              "CAPABILITY_REDUCED",
+              "DECLARED_INFERRED_MISMATCH",
+              "DECLARED_OBSERVED_MISMATCH",
+              "POLICY_CHANGED",
+              "ENFORCEMENT_COVERAGE_CHANGED",
+              "SECRET_SURFACE_CHANGED",
+              "NETWORK_SURFACE_CHANGED",
+              "PATCH_SCOPE_CHANGED",
+              "TEST_EVIDENCE_CHANGED"
+            ],
+            "minLength": 1,
+            "type": "string"
+          },
+          "evidence_refs": {
+            "items": {
+              "minLength": 1,
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "explanation": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "severity": {
+            "enum": [
+              "info",
+              "low",
+              "medium",
+              "high",
+              "critical"
+            ],
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "change_type",
+          "severity",
+          "explanation"
+        ],
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "current_digest": {
+      "minLength": 1,
+      "pattern": "^(?:sha256:)?[0-9a-fA-F]{64}$",
+      "type": "string"
+    },
+    "schema_version": {
+      "minLength": 1,
+      "pattern": "^1\\.[0-9]+\\.[0-9]+(?:[-+][0-9A-Za-z.-]+)?$",
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema_version",
+    "baseline_name",
+    "baseline_digest",
+    "current_digest",
+    "changes"
+  ],
+  "title": "TrustDiff",
+  "type": "object"
+}

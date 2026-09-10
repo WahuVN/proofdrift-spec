@@ -1,0 +1,13 @@
+{
+  "artifact_id": "skill:review",
+  "artifact_type": "skill",
+  "content_digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "metadata": {
+    "active": true
+  },
+  "name": "review",
+  "provenance_status": "verified",
+  "resolved_revision": "abc123",
+  "schema_version": "1.0.0",
+  "source_uri": "https://example.invalid/repo"
+}

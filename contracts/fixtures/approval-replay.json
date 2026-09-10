@@ -1,0 +1,14 @@
+{
+  "category": "security",
+  "description": "Approval replay.",
+  "expect": {
+    "invariants": [
+      "second_use_denied"
+    ]
+  },
+  "fixture_id": "approval-replay",
+  "input": {
+    "token_use_count": 2
+  },
+  "schema_version": "1.0.0"
+}

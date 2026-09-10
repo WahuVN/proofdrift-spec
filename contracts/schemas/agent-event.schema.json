@@ -1,0 +1,106 @@
+{
+  "$id": "https://raw.githubusercontent.com/WahuVN/proofdrift-spec/main/contracts/schemas/agent-event.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "actor": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "adapter_id": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "adapter_version": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "decision_id": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "enforcement_level": {
+      "enum": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "minLength": 1,
+      "type": "string"
+    },
+    "event_hash": {
+      "minLength": 1,
+      "pattern": "^(?:sha256:)?[0-9a-fA-F]{64}$",
+      "type": "string"
+    },
+    "event_id": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "event_type": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "evidence_refs": {
+      "items": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "normalized_args": {},
+    "outcome": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "prev_event_hash": {
+      "minLength": 1,
+      "pattern": "^(?:sha256:)?[0-9a-fA-F]{64}$",
+      "type": "string"
+    },
+    "proposed_action": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "resource": {
+      "minLength": 0,
+      "type": "string"
+    },
+    "schema_version": {
+      "minLength": 1,
+      "pattern": "^1\\.[0-9]+\\.[0-9]+(?:[-+][0-9A-Za-z.-]+)?$",
+      "type": "string"
+    },
+    "sequence": {
+      "minimum": 1,
+      "type": "integer"
+    },
+    "session_id": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "timestamp_monotonic_ns": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "timestamp_wall": {
+      "minLength": 1,
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema_version",
+    "event_id",
+    "session_id",
+    "sequence",
+    "timestamp_wall",
+    "actor",
+    "adapter_id",
+    "event_type",
+    "outcome",
+    "enforcement_level"
+  ],
+  "title": "AgentEvent",
+  "type": "object"
+}

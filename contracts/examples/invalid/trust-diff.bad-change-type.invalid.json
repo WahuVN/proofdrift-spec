@@ -1,0 +1,16 @@
+{
+  "$document": {
+    "baseline_digest": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "baseline_name": "trusted-main",
+    "changes": [
+      {
+        "change_type": "MAGIC_SCORE_CHANGED",
+        "explanation": "invalid",
+        "severity": "high"
+      }
+    ],
+    "current_digest": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+    "schema_version": "1.0.0"
+  },
+  "$expected_schema": "trust-diff"
+}

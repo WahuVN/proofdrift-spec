@@ -1,0 +1,15 @@
+{
+  "artifact_hashes": {
+    "stdout": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+  },
+  "command": "cargo test auth",
+  "duration_ms": 123,
+  "environment_fingerprint": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "exit_status": 0,
+  "observed": true,
+  "schema_version": "1.0.0",
+  "test_ids": [
+    "auth::login"
+  ],
+  "tool": "cargo"
+}

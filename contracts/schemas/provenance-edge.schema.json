@@ -1,0 +1,70 @@
+{
+  "$id": "https://raw.githubusercontent.com/WahuVN/proofdrift-spec/main/contracts/schemas/provenance-edge.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "confidence": {
+      "maximum": 1,
+      "minimum": 0,
+      "type": "number"
+    },
+    "evidence_kind": {
+      "enum": [
+        "observed",
+        "derived",
+        "declared",
+        "external"
+      ],
+      "minLength": 1,
+      "type": "string"
+    },
+    "from_artifact_id": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "relation": {
+      "enum": [
+        "includes",
+        "loads",
+        "built_from",
+        "derived_from",
+        "trained_on",
+        "fine_tuned_from",
+        "quantized_from",
+        "invokes",
+        "produced_by",
+        "verified_by",
+        "other"
+      ],
+      "minLength": 1,
+      "type": "string"
+    },
+    "schema_version": {
+      "minLength": 1,
+      "pattern": "^1\\.[0-9]+\\.[0-9]+(?:[-+][0-9A-Za-z.-]+)?$",
+      "type": "string"
+    },
+    "source": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "to_artifact_id": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "verified": {
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "schema_version",
+    "from_artifact_id",
+    "relation",
+    "to_artifact_id",
+    "evidence_kind",
+    "source",
+    "verified"
+  ],
+  "title": "ProvenanceEdge",
+  "type": "object"
+}

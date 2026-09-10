@@ -1,0 +1,9 @@
+{
+  "confidence": 0.9,
+  "evidence_kind": "derived",
+  "schema_version": "1.0.0",
+  "source_refs": [
+    "file:.agent/skill.md"
+  ],
+  "value": "network.connect"
+}

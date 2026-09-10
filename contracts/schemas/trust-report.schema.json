@@ -1,0 +1,218 @@
+{
+  "$id": "https://raw.githubusercontent.com/WahuVN/proofdrift-spec/main/contracts/schemas/trust-report.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "capabilities": {
+      "items": {
+        "$ref": "https://raw.githubusercontent.com/WahuVN/proofdrift-spec/main/contracts/schemas/capability.schema.json"
+      },
+      "type": "array"
+    },
+    "declared_vs_observed_drift": {
+      "items": {
+        "additionalProperties": true,
+        "properties": {
+          "after": {},
+          "artifact_id": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "before": {},
+          "capability_id": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "change_type": {
+            "enum": [
+              "COMPONENT_ADDED",
+              "COMPONENT_REMOVED",
+              "COMPONENT_CHANGED",
+              "SOURCE_REF_DRIFT",
+              "HASH_DRIFT",
+              "TOOL_SCHEMA_DRIFT",
+              "CAPABILITY_ADDED",
+              "CAPABILITY_REMOVED",
+              "CAPABILITY_EXPANDED",
+              "CAPABILITY_REDUCED",
+              "DECLARED_INFERRED_MISMATCH",
+              "DECLARED_OBSERVED_MISMATCH",
+              "POLICY_CHANGED",
+              "ENFORCEMENT_COVERAGE_CHANGED",
+              "SECRET_SURFACE_CHANGED",
+              "NETWORK_SURFACE_CHANGED",
+              "PATCH_SCOPE_CHANGED",
+              "TEST_EVIDENCE_CHANGED"
+            ],
+            "minLength": 1,
+            "type": "string"
+          },
+          "evidence_refs": {
+            "items": {
+              "minLength": 1,
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "explanation": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "severity": {
+            "enum": [
+              "info",
+              "low",
+              "medium",
+              "high",
+              "critical"
+            ],
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "change_type",
+          "severity",
+          "explanation"
+        ],
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "enforcement_coverage": {
+      "additionalProperties": {
+        "enum": [
+          "L0",
+          "L1",
+          "L2",
+          "L3"
+        ],
+        "minLength": 1,
+        "type": "string"
+      },
+      "type": "object"
+    },
+    "findings": {
+      "items": {
+        "$ref": "https://raw.githubusercontent.com/WahuVN/proofdrift-spec/main/contracts/schemas/finding.schema.json"
+      },
+      "type": "array"
+    },
+    "inventory_summary": {
+      "additionalProperties": {
+        "minimum": 0,
+        "type": "integer"
+      },
+      "type": "object"
+    },
+    "patch_impact": {
+      "$ref": "https://raw.githubusercontent.com/WahuVN/proofdrift-spec/main/contracts/schemas/patch-impact.schema.json"
+    },
+    "policy_decisions": {
+      "items": {
+        "$ref": "https://raw.githubusercontent.com/WahuVN/proofdrift-spec/main/contracts/schemas/policy-decision.schema.json"
+      },
+      "type": "array"
+    },
+    "provenance_coverage": {
+      "additionalProperties": {
+        "additionalProperties": true,
+        "properties": {
+          "covered": {
+            "minimum": 0,
+            "type": "integer"
+          },
+          "total": {
+            "minimum": 0,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "covered",
+          "total"
+        ],
+        "type": "object"
+      },
+      "type": "object"
+    },
+    "residual_risks": {
+      "items": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "schema_version": {
+      "minLength": 1,
+      "pattern": "^1\\.[0-9]+\\.[0-9]+(?:[-+][0-9A-Za-z.-]+)?$",
+      "type": "string"
+    },
+    "scope": {},
+    "score_card": {
+      "additionalProperties": true,
+      "properties": {
+        "components": {
+          "items": {
+            "additionalProperties": true,
+            "properties": {
+              "component_id": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "evidence_refs": {
+                "items": {
+                  "minLength": 1,
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              "rationale": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "value": {
+                "type": "integer"
+              },
+              "weight_milli": {
+                "type": "integer"
+              }
+            },
+            "required": [
+              "component_id",
+              "value",
+              "weight_milli",
+              "rationale"
+            ],
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "formula": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "total": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "formula",
+        "total",
+        "components"
+      ],
+      "type": "object"
+    },
+    "test_evidence": {
+      "items": {
+        "$ref": "https://raw.githubusercontent.com/WahuVN/proofdrift-spec/main/contracts/schemas/test-evidence.schema.json"
+      },
+      "type": "array"
+    }
+  },
+  "required": [
+    "schema_version",
+    "scope"
+  ],
+  "title": "TrustReport",
+  "type": "object"
+}

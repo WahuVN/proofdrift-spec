@@ -1,0 +1,10 @@
+{
+  "action": "fs.read",
+  "context": {
+    "interactive": false
+  },
+  "principal": "agent:test",
+  "request_id": "req-1",
+  "resource": "workspace/src/**",
+  "schema_version": "1.0.0"
+}
