@@ -1,5 +1,5 @@
 {
-  "$id": "https://raw.githubusercontent.com/WahuVN/proofdrift-spec/main/contracts/schemas/policy-request.schema.json",
+  "$id": "urn:proofdrift:schema:1.0.0:policy-request",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": true,
   "properties": {
@@ -8,7 +8,7 @@
       "type": "string"
     },
     "capability": {
-      "$ref": "https://raw.githubusercontent.com/WahuVN/proofdrift-spec/main/contracts/schemas/capability.schema.json"
+      "$ref": "urn:proofdrift:schema:1.0.0:capability"
     },
     "context": {
       "additionalProperties": true,
@@ -19,7 +19,7 @@
       "type": "string"
     },
     "provenance": {
-      "$ref": "https://raw.githubusercontent.com/WahuVN/proofdrift-spec/main/contracts/schemas/artifact-identity.schema.json"
+      "$ref": "urn:proofdrift:schema:1.0.0:artifact-identity"
     },
     "request_id": {
       "minLength": 1,

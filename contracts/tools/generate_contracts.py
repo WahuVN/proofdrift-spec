@@ -15,7 +15,8 @@ SCHEMAS = ROOT / "contracts" / "schemas"
 VALID = ROOT / "contracts" / "examples" / "valid"
 INVALID = ROOT / "contracts" / "examples" / "invalid"
 FIXTURES = ROOT / "contracts" / "fixtures"
-BASE = "https://raw.githubusercontent.com/WahuVN/proofdrift-spec/main/contracts/schemas/"
+SPEC_VERSION = "1.0.0"
+SCHEMA_ID_PREFIX = f"urn:proofdrift:schema:{SPEC_VERSION}:"
 VERSION_PATTERN = r"^1\.[0-9]+\.[0-9]+(?:[-+][0-9A-Za-z.-]+)?$"
 SHA256_PATTERN = r"^(?:sha256:)?[0-9a-fA-F]{64}$"
 
@@ -26,7 +27,7 @@ def write_json(path: Path, value: object) -> None:
 
 
 def ref(name: str) -> dict:
-    return {"$ref": BASE + name + ".schema.json"}
+    return {"$ref": SCHEMA_ID_PREFIX + name}
 
 
 def arr(items: dict, *, unique: bool = False) -> dict:
@@ -57,7 +58,7 @@ def obj(required: list[str], properties: dict, *, additional: bool = True) -> di
 def schema(name: str, title: str, body: dict) -> dict:
     return {
         "$schema": "https://json-schema.org/draft/2020-12/schema",
-        "$id": BASE + name + ".schema.json",
+        "$id": SCHEMA_ID_PREFIX + name,
         "title": title,
         **body,
     }
@@ -97,8 +98,14 @@ evidence_value = schema("evidence-value", "EvidenceValue", obj(
     },
 ))
 evidence_value["allOf"] = [{
-    "if": {"required": ["confidence"]},
-    "then": {"properties": {"evidence_kind": {"const": "derived"}}},
+    "if": {
+        "properties": {"confidence": {}},
+        "required": ["confidence"],
+    },
+    "then": {
+        "properties": {"evidence_kind": {"const": "derived"}},
+        "required": ["evidence_kind"],
+    },
 }]
 
 capability = schema("capability", "Capability", obj(
@@ -473,6 +480,7 @@ def main() -> None:
         "schema_version": "1.0.0",
         "canonicalization": "proofdrift-json-v1",
         "schemas": sorted(f"{name}.schema.json" for name in SCHEMA_DOCS),
+        "schema_ids": {name: SCHEMA_DOCS[name]["$id"] for name in sorted(SCHEMA_DOCS)},
     })
     print(f"generated {len(SCHEMA_DOCS)} schemas, {len(EXAMPLES)} valid examples, {len(INVALID_EXAMPLES)} invalid examples, {len(FIXTURE_DATA)} fixtures")
 

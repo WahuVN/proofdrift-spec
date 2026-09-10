@@ -1,0 +1,12 @@
+{
+  "name": "proofdrift-spec-conformance",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "conformance": "node contracts/tools/conformance_ajv.mjs"
+  },
+  "dependencies": {
+    "ajv": "8.20.0"
+  }
+}

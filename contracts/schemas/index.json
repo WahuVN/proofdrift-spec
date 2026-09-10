@@ -1,5 +1,22 @@
 {
   "canonicalization": "proofdrift-json-v1",
+  "schema_ids": {
+    "agent-event": "urn:proofdrift:schema:1.0.0:agent-event",
+    "artifact-identity": "urn:proofdrift:schema:1.0.0:artifact-identity",
+    "baseline-snapshot": "urn:proofdrift:schema:1.0.0:baseline-snapshot",
+    "bundle-manifest": "urn:proofdrift:schema:1.0.0:bundle-manifest",
+    "capability": "urn:proofdrift:schema:1.0.0:capability",
+    "evidence-value": "urn:proofdrift:schema:1.0.0:evidence-value",
+    "finding": "urn:proofdrift:schema:1.0.0:finding",
+    "fixture-case": "urn:proofdrift:schema:1.0.0:fixture-case",
+    "patch-impact": "urn:proofdrift:schema:1.0.0:patch-impact",
+    "policy-decision": "urn:proofdrift:schema:1.0.0:policy-decision",
+    "policy-request": "urn:proofdrift:schema:1.0.0:policy-request",
+    "provenance-edge": "urn:proofdrift:schema:1.0.0:provenance-edge",
+    "test-evidence": "urn:proofdrift:schema:1.0.0:test-evidence",
+    "trust-diff": "urn:proofdrift:schema:1.0.0:trust-diff",
+    "trust-report": "urn:proofdrift:schema:1.0.0:trust-report"
+  },
   "schema_version": "1.0.0",
   "schemas": [
     "agent-event.schema.json",

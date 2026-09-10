@@ -1,11 +1,11 @@
 {
-  "$id": "https://raw.githubusercontent.com/WahuVN/proofdrift-spec/main/contracts/schemas/trust-report.schema.json",
+  "$id": "urn:proofdrift:schema:1.0.0:trust-report",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": true,
   "properties": {
     "capabilities": {
       "items": {
-        "$ref": "https://raw.githubusercontent.com/WahuVN/proofdrift-spec/main/contracts/schemas/capability.schema.json"
+        "$ref": "urn:proofdrift:schema:1.0.0:capability"
       },
       "type": "array"
     },
@@ -94,7 +94,7 @@
     },
     "findings": {
       "items": {
-        "$ref": "https://raw.githubusercontent.com/WahuVN/proofdrift-spec/main/contracts/schemas/finding.schema.json"
+        "$ref": "urn:proofdrift:schema:1.0.0:finding"
       },
       "type": "array"
     },
@@ -106,11 +106,11 @@
       "type": "object"
     },
     "patch_impact": {
-      "$ref": "https://raw.githubusercontent.com/WahuVN/proofdrift-spec/main/contracts/schemas/patch-impact.schema.json"
+      "$ref": "urn:proofdrift:schema:1.0.0:patch-impact"
     },
     "policy_decisions": {
       "items": {
-        "$ref": "https://raw.githubusercontent.com/WahuVN/proofdrift-spec/main/contracts/schemas/policy-decision.schema.json"
+        "$ref": "urn:proofdrift:schema:1.0.0:policy-decision"
       },
       "type": "array"
     },
@@ -204,7 +204,7 @@
     },
     "test_evidence": {
       "items": {
-        "$ref": "https://raw.githubusercontent.com/WahuVN/proofdrift-spec/main/contracts/schemas/test-evidence.schema.json"
+        "$ref": "urn:proofdrift:schema:1.0.0:test-evidence"
       },
       "type": "array"
     }

@@ -1,5 +1,5 @@
 {
-  "$id": "https://raw.githubusercontent.com/WahuVN/proofdrift-spec/main/contracts/schemas/fixture-case.schema.json",
+  "$id": "urn:proofdrift:schema:1.0.0:fixture-case",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": true,
   "properties": {

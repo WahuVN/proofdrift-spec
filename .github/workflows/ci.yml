@@ -20,10 +20,37 @@ jobs:
         with:
           python-version: '3.12'
           cache: pip
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6.5.0
+        with:
+          node-version: '24'
+          cache: npm
       - name: Install validator dependencies
-        run: python -m pip install --disable-pip-version-check -r requirements.txt
+        run: |
+          python -m pip install --disable-pip-version-check -r requirements.txt
+          npm ci --ignore-scripts --no-audit --no-fund
       - name: Validate checked-in schemas and examples
         run: python contracts/tools/validate_examples.py
+      - name: Verify conformance harness
+        run: python contracts/tools/conformance.py self-test
+      - name: Verify independent Ajv conformance
+        shell: bash
+        run: |
+          set -euo pipefail
+          python contracts/tools/conformance.py emit > "$RUNNER_TEMP/proofdrift-vectors.jsonl"
+          node contracts/tools/conformance_ajv.mjs "$RUNNER_TEMP/proofdrift-vectors.jsonl" > "$RUNNER_TEMP/proofdrift-ajv-results.jsonl"
+          python contracts/tools/conformance.py score "$RUNNER_TEMP/proofdrift-ajv-results.jsonl" --require-perfect | tee "$RUNNER_TEMP/proofdrift-ajv-score.json"
+      - name: Upload conformance evidence
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: spec-conformance-evidence
+          path: |
+            ${{ runner.temp }}/proofdrift-vectors.jsonl
+            ${{ runner.temp }}/proofdrift-ajv-results.jsonl
+            ${{ runner.temp }}/proofdrift-ajv-score.json
+          if-no-files-found: error
+          retention-days: 30
+      - name: Verify normative semantic requirements
+        run: python contracts/tools/validate_semantics.py
       - name: Verify deterministic regeneration
         shell: bash
         run: |

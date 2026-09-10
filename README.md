@@ -16,7 +16,28 @@ Schemas use JSON Schema Draft 2020-12. Additive object fields are permitted wher
 ```sh
 python -m pip install -r requirements.txt
 python contracts/tools/validate_examples.py
+python contracts/tools/conformance.py self-test
+python contracts/tools/validate_semantics.py
 ```
+
+## Normative semantics
+
+`contracts/semantics.json` defines stable `PD-*-NNN` requirements for passive discovery, evidence integrity, approval binding, enforcement strength, policy binding, provenance, test proof, bundle safety, capability drift, MCP schema drift, nested shells and secret egress. Every checked-in fixture is referenced by at least one normative requirement, and CI requires **100% fixture trace coverage**.
+
+## Cross-implementation conformance
+
+The repository now includes an implementation-neutral JSONL conformance protocol. It emits checked-in positive and negative contract vectors with **opaque vector IDs and no expected labels or valid/invalid path hints**, so another implementation can validate them independently and return only its accept/reject decisions.
+
+```sh
+python contracts/tools/conformance.py emit > proofdrift-conformance-vectors.jsonl
+# External implementation writes one row per vector:
+# {"vector_id":"vector-0123456789abcdef0123","accepted":true}
+python contracts/tools/conformance.py score external-results.jsonl --require-perfect
+```
+
+The scorer records a deterministic `suite_digest` so an external result can be tied to the exact vector set. CI also validates the same opaque vectors with **Ajv 8.20.0 on Node 24** and requires a perfect score from that independent JSON Schema implementation. A passing Python self-test still verifies only the harness; interoperability evidence is the independently produced Ajv result.
+
+Schema `$id` values are versioned immutable URNs such as `urn:proofdrift:schema:1.0.0:agent-event`; they do not point at a mutable `main` branch. `contracts/schemas/index.json` records the filename-to-URN map for consumers.
 
 ## Regenerate
 

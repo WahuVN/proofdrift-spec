@@ -1,0 +1,102 @@
+{
+  "schema_version": "1.0.0",
+  "suite": "proofdrift-semantic-requirements",
+  "requirements": [
+    {
+      "id": "PD-PASSIVE-001",
+      "level": "MUST_NOT",
+      "title": "Passive discovery must not execute discovered commands",
+      "statement": "A passive discovery or scan operation MUST NOT launch commands, tools, hooks, MCP servers, or other executable content discovered in project configuration.",
+      "fixtures": ["safe-minimal-agent.json", "malicious-skill-instruction.json", "template-not-active.json"],
+      "evidence": ["process_launch_count", "scan_mode"]
+    },
+    {
+      "id": "PD-EVIDENCE-001",
+      "level": "MUST",
+      "title": "Evidence chains preserve sequence and predecessor binding",
+      "statement": "Evidence verification MUST reject duplicate, missing, reordered, or predecessor-inconsistent events when the chain claims ordered integrity.",
+      "fixtures": ["duplicate-event-id.json", "out-of-order-event.json", "bundle-corrupted-byte.json"],
+      "evidence": ["sequence", "prev_event_hash", "event_hash"]
+    },
+    {
+      "id": "PD-APPROVAL-001",
+      "level": "MUST",
+      "title": "Approvals are one-time and scope-bound",
+      "statement": "An approval grant MUST be bound to the exact normalized request and policy decision scope and MUST NOT authorize a second dispatch after consumption.",
+      "fixtures": ["approval-replay.json", "policy-digest-changed.json"],
+      "evidence": ["approval_id", "request_digest", "policy_bundle_digest", "decision_hash"]
+    },
+    {
+      "id": "PD-ENFORCEMENT-001",
+      "level": "MUST_NOT",
+      "title": "Evidence strength must never be silently upgraded",
+      "statement": "An implementation MUST NOT report L2 isolation from L1 brokering, or L3 attestation from local observation, unless a concrete boundary or configured trust root proves the stronger claim.",
+      "fixtures": ["observed-not-enforced.json"],
+      "evidence": ["enforcement_level", "adapter_id", "enforcement_scope"]
+    },
+    {
+      "id": "PD-POLICY-001",
+      "level": "MUST",
+      "title": "Policy decisions bind request and policy digests",
+      "statement": "A policy decision used for dispatch MUST bind the normalized request and the exact policy bundle evaluated; a digest mismatch MUST fail closed.",
+      "fixtures": ["policy-digest-changed.json", "git-force-push.json", "git-safe-commit.json"],
+      "evidence": ["request_digest", "policy_bundle_digest", "decision_hash"]
+    },
+    {
+      "id": "PD-PROVENANCE-001",
+      "level": "MUST_NOT",
+      "title": "Unknown provenance is not verified provenance",
+      "statement": "An implementation MUST NOT promote declared, inferred, floating, or unavailable provenance to verified provenance without supporting resolution evidence.",
+      "fixtures": ["unpinned-mcp.json", "provenance-missing-edge.json"],
+      "evidence": ["source_ref", "resolved_revision", "content_digest"]
+    },
+    {
+      "id": "PD-TEST-001",
+      "level": "MUST_NOT",
+      "title": "Claimed tests are not observed tests",
+      "statement": "An implementation MUST NOT report a test as observed solely because a command, log line, or agent statement claims that the test ran.",
+      "fixtures": ["patch-auth.json", "patch-concurrency.json", "patch-db.json"],
+      "evidence": ["test_command", "execution_receipt", "observed"]
+    },
+    {
+      "id": "PD-BUNDLE-001",
+      "level": "MUST",
+      "title": "Bundle verification is bounded and traversal-safe",
+      "statement": "Evidence bundle verification MUST reject unsafe paths and MUST enforce configured size and expansion limits before materializing untrusted archive content.",
+      "fixtures": ["bundle-valid.json", "bundle-corrupted-byte.json", "path-traversal.json", "symlink-escape.json"],
+      "evidence": ["entry_path", "entry_digest", "size_limit"]
+    },
+    {
+      "id": "PD-CAPABILITY-001",
+      "level": "MUST",
+      "title": "Capability expansion remains distinguishable from reduction",
+      "statement": "Trust-diff processing MUST preserve the direction of capability changes and MUST identify added authority without treating a reduction as equivalent risk.",
+      "fixtures": ["capability-expansion.json", "capability-reduction.json"],
+      "evidence": ["capability_before", "capability_after"]
+    },
+    {
+      "id": "PD-MCP-001",
+      "level": "MUST",
+      "title": "MCP schema drift is checked before tool dispatch",
+      "statement": "When an MCP tool definition changes from the accepted baseline, the broker MUST evaluate the current definition before dispatch and MUST fail closed when the change invalidates the authorization basis.",
+      "fixtures": ["mcp-tool-schema-drift.json", "unpinned-mcp.json"],
+      "evidence": ["tool_schema_before", "tool_schema_after", "policy_decision"]
+    },
+    {
+      "id": "PD-SHELL-001",
+      "level": "MUST_NOT",
+      "title": "Broad shell grants are not equivalent to precise capabilities",
+      "statement": "An implementation MUST NOT treat an unrestricted shell or opaque nested interpreter grant as equivalent to a narrowly classified direct-argv capability.",
+      "fixtures": ["overbroad-shell-grant.json"],
+      "evidence": ["normalized_argv", "shell_kind", "opaque_nested_shell"]
+    },
+    {
+      "id": "PD-SECRET-001",
+      "level": "MUST",
+      "title": "Secret egress decisions bind sensitive source and destination",
+      "statement": "A secret-egress control MUST evaluate the sensitive source and outbound destination before allowing dispatch and must preserve non-secret evidence sufficient to explain the decision.",
+      "fixtures": ["secret-egress-attempt.json"],
+      "evidence": ["secret_fingerprint", "egress_target", "policy_decision"]
+    }
+  ]
+}
