@@ -53,6 +53,16 @@ jobs:
         run: python contracts/tools/validate_semantics.py
       - name: Validate normative conformance invariants
         run: python contracts/tools/validate_conformance.py
+      - name: Verify security release gate
+        shell: bash
+        run: python contracts/tools/security_release_gate.py | tee "$RUNNER_TEMP/spec-security-release-evidence.json"
+      - name: Upload security release evidence
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: spec-security-release-evidence
+          path: ${{ runner.temp }}/spec-security-release-evidence.json
+          if-no-files-found: error
+          retention-days: 30
       - name: Verify deterministic regeneration
         shell: bash
         run: |
