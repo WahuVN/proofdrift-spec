@@ -1,5 +1,7 @@
 ﻿# ProofDrift Spec
 
+**English** | [Tiếng Việt](README.vi.md)
+
 [![Spec CI](https://github.com/WahuVN/proofdrift-spec/actions/workflows/ci.yml/badge.svg)](https://github.com/WahuVN/proofdrift-spec/actions/workflows/ci.yml)
 [![License](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](LICENSE)
 
