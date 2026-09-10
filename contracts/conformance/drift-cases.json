@@ -1,0 +1,32 @@
+[
+  {
+    "drift_class": "provenance drift",
+    "positive": {"before": {"revision": "A", "digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"}, "after": {"revision": "B", "digest": "sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"}, "expected_drift": true},
+    "negative": {"before": {"name": "worker", "revision": "A", "digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"}, "after": {"name": "worker-renamed", "revision": "A", "digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"}, "expected_drift": false}
+  },
+  {
+    "drift_class": "capability drift",
+    "positive": {"before": ["network:github.com/api/**"], "after": ["network:**"], "expected_drift": true},
+    "negative": {"before": ["fs:read", "network:github.com/api/**"], "after": ["network:github.com/api/**", "fs:read"], "expected_drift": false}
+  },
+  {
+    "drift_class": "policy drift",
+    "positive": {"before": {"decision": "DENY", "policy_digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"}, "after": {"decision": "ALLOW", "policy_digest": "sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"}, "expected_drift": true},
+    "negative": {"before": {"decision": "DENY", "policy_digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"}, "after": {"decision": "DENY", "policy_digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", "source_format": "pretty"}, "expected_drift": false}
+  },
+  {
+    "drift_class": "runtime drift",
+    "positive": {"before": {"declared_enforcement": "L2"}, "after": {"observed_enforcement": "L0"}, "expected_drift": true},
+    "negative": {"before": {"event": {"a": 1, "b": 2}, "sequence": 4}, "after": {"event": {"b": 2, "a": 1}, "sequence": 4}, "expected_drift": false}
+  },
+  {
+    "drift_class": "patch-impact drift",
+    "positive": {"before": {"surfaces": ["docs"]}, "after": {"surfaces": ["auth"]}, "expected_drift": true},
+    "negative": {"before": {"symbols": ["auth::verify"], "surfaces": ["auth"]}, "after": {"symbols": ["auth::verify"], "surfaces": ["auth"], "path": "src/security/auth.rs"}, "expected_drift": false}
+  },
+  {
+    "drift_class": "test-proof drift",
+    "positive": {"before": {"observed": true, "artifact_digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", "exit_status": 0}, "after": {"observed": false, "artifact_digest": "sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb", "exit_status": 0}, "expected_drift": true},
+    "negative": {"before": {"observed": true, "artifact_digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", "exit_status": 0, "log": "PASS"}, "after": {"observed": true, "artifact_digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", "exit_status": 0, "log": "pass"}, "expected_drift": false}
+  }
+]

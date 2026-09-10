@@ -1,0 +1,27 @@
+{
+  "$document": {
+    "decision_id": "evaluation:1",
+    "diagnostics": [],
+    "digest": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "evidence_refs": [
+      "evidence:runtime:1"
+    ],
+    "findings": [
+      {
+        "drift_class": "capability drift",
+        "evidence_refs": [
+          "evidence:runtime:1"
+        ],
+        "explanation": "Capability scope expanded.",
+        "finding_id": "drift:1",
+        "fingerprint": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "schema_version": "1.0.0",
+        "verdict": "warn"
+      }
+    ],
+    "schema_version": "1.0.0",
+    "subject": "agent:test",
+    "verdict": "maybe"
+  },
+  "$expected_schema": "evaluation-decision"
+}

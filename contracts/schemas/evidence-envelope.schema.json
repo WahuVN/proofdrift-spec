@@ -1,0 +1,79 @@
+{
+  "$id": "urn:proofdrift:schema:1.0.0:evidence-envelope",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "capability_context": {
+      "items": {
+        "$ref": "urn:proofdrift:schema:1.0.0:capability"
+      },
+      "type": "array"
+    },
+    "decision": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "object"
+        }
+      ]
+    },
+    "digest": {
+      "minLength": 1,
+      "pattern": "^(?:sha256:)?[0-9a-fA-F]{64}$",
+      "type": "string"
+    },
+    "evidence_refs": {
+      "items": {
+        "$ref": "urn:proofdrift:schema:1.0.0:evidence-reference"
+      },
+      "type": "array",
+      "uniqueItems": true
+    },
+    "extensions": {
+      "additionalProperties": true,
+      "type": "object"
+    },
+    "policy_context": {
+      "additionalProperties": true,
+      "type": "object"
+    },
+    "provenance": {
+      "items": {
+        "$ref": "urn:proofdrift:schema:1.0.0:artifact-identity"
+      },
+      "type": "array"
+    },
+    "schema_version": {
+      "minLength": 1,
+      "pattern": "^1\\.[0-9]+\\.[0-9]+(?:[-+][0-9A-Za-z.-]+)?$",
+      "type": "string"
+    },
+    "sequence": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "subject": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "timestamp": {
+      "minLength": 1,
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema_version",
+    "subject",
+    "provenance",
+    "sequence",
+    "policy_context",
+    "capability_context",
+    "decision",
+    "evidence_refs",
+    "digest"
+  ],
+  "title": "EvidenceEnvelope",
+  "type": "object"
+}

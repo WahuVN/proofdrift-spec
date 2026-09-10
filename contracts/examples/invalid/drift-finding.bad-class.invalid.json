@@ -1,0 +1,16 @@
+{
+  "$document": {
+    "after": "**",
+    "before": "workspace/src/**",
+    "drift_class": "unknown drift",
+    "evidence_refs": [
+      "evidence:runtime:1"
+    ],
+    "explanation": "Capability scope expanded.",
+    "finding_id": "drift:1",
+    "fingerprint": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "schema_version": "1.0.0",
+    "verdict": "warn"
+  },
+  "$expected_schema": "drift-finding"
+}

@@ -1,0 +1,11 @@
+{
+  "$document": {
+    "digest": "not-a-digest",
+    "kind": "runtime",
+    "media_type": "application/json",
+    "ref_id": "evidence:runtime:1",
+    "schema_version": "1.0.0",
+    "uri": "urn:proofdrift:evidence:runtime:1"
+  },
+  "$expected_schema": "evidence-reference"
+}

@@ -15,10 +15,19 @@ SCHEMAS = ROOT / "contracts" / "schemas"
 VALID = ROOT / "contracts" / "examples" / "valid"
 INVALID = ROOT / "contracts" / "examples" / "invalid"
 FIXTURES = ROOT / "contracts" / "fixtures"
+CONFORMANCE = ROOT / "contracts" / "conformance"
 SPEC_VERSION = "1.0.0"
 SCHEMA_ID_PREFIX = f"urn:proofdrift:schema:{SPEC_VERSION}:"
 VERSION_PATTERN = r"^1\.[0-9]+\.[0-9]+(?:[-+][0-9A-Za-z.-]+)?$"
 SHA256_PATTERN = r"^(?:sha256:)?[0-9a-fA-F]{64}$"
+DRIFT_CLASSES = [
+    "provenance drift",
+    "capability drift",
+    "policy drift",
+    "runtime drift",
+    "patch-impact drift",
+    "test-proof drift",
+]
 
 
 def write_json(path: Path, value: object) -> None:
@@ -370,6 +379,64 @@ fixture_case = schema("fixture-case", "FixtureCase", obj(
     },
 ))
 
+evidence_reference = schema("evidence-reference", "EvidenceReference", obj(
+    ["schema_version", "ref_id", "kind", "uri", "digest"],
+    {
+        "schema_version": schema_version,
+        "ref_id": string(),
+        "kind": string(enum=["artifact", "event", "policy", "test", "runtime", "external"]),
+        "uri": string(),
+        "digest": digest,
+        "media_type": string(),
+    },
+))
+
+evidence_envelope = schema("evidence-envelope", "EvidenceEnvelope", obj(
+    ["schema_version", "subject", "provenance", "sequence", "policy_context", "capability_context", "decision", "evidence_refs", "digest"],
+    {
+        "schema_version": schema_version,
+        "subject": string(),
+        "provenance": arr(ref("artifact-identity")),
+        "timestamp": string(),
+        "sequence": {"type": "integer", "minimum": 0},
+        "policy_context": {"type": "object", "additionalProperties": True},
+        "capability_context": arr(ref("capability")),
+        "decision": {"anyOf": [{"type": "string"}, {"type": "object"}]},
+        "evidence_refs": arr(ref("evidence-reference"), unique=True),
+        "digest": digest,
+        "extensions": metadata,
+    },
+))
+
+drift_finding = schema("drift-finding", "DriftFinding", obj(
+    ["schema_version", "finding_id", "drift_class", "verdict", "explanation", "evidence_refs", "fingerprint"],
+    {
+        "schema_version": schema_version,
+        "finding_id": string(),
+        "drift_class": string(enum=DRIFT_CLASSES),
+        "verdict": string(enum=["pass", "warn", "block"]),
+        "explanation": string(),
+        "evidence_refs": arr(string(), unique=True),
+        "fingerprint": digest,
+        "before": {},
+        "after": {},
+    },
+))
+
+evaluation_decision = schema("evaluation-decision", "EvaluationDecision", obj(
+    ["schema_version", "decision_id", "subject", "verdict", "findings", "evidence_refs", "digest"],
+    {
+        "schema_version": schema_version,
+        "decision_id": string(),
+        "subject": string(),
+        "verdict": string(enum=["pass", "warn", "block"]),
+        "findings": arr(ref("drift-finding")),
+        "evidence_refs": arr(string(), unique=True),
+        "digest": digest,
+        "diagnostics": arr(string(min_len=0)),
+    },
+))
+
 SCHEMA_DOCS = {
     "artifact-identity": artifact,
     "evidence-value": evidence_value,
@@ -386,6 +453,10 @@ SCHEMA_DOCS = {
     "baseline-snapshot": baseline_snapshot,
     "trust-diff": trust_diff,
     "fixture-case": fixture_case,
+    "evidence-reference": evidence_reference,
+    "evidence-envelope": evidence_envelope,
+    "drift-finding": drift_finding,
+    "evaluation-decision": evaluation_decision,
 }
 
 H = "a" * 64
@@ -408,6 +479,10 @@ EXAMPLES = {
     "baseline-snapshot": {"schema_version": "1.0.0", "name": "trusted-main", "created_at": "2026-09-10T00:00:00Z", "artifacts": [], "capabilities": [], "policy_digest": H, "enforcement_coverage": {"mcp": "L1"}},
     "trust-diff": {"schema_version": "1.0.0", "baseline_name": "trusted-main", "baseline_digest": H, "current_digest": H2, "changes": [{"change_type": "CAPABILITY_EXPANDED", "severity": "high", "capability_id": "network.connect", "before": "github.com:443", "after": "**", "explanation": "Network scope expanded."}]},
     "fixture-case": {"schema_version": "1.0.0", "fixture_id": "safe-minimal", "category": "safe", "description": "Minimal safe project fixture.", "input": {"files": ["README.md"]}, "expect": {"invariants": ["passive_discovery_no_process_launch"]}},
+    "evidence-reference": {"schema_version": "1.0.0", "ref_id": "evidence:runtime:1", "kind": "runtime", "uri": "urn:proofdrift:evidence:runtime:1", "digest": H, "media_type": "application/json"},
+    "evidence-envelope": {"schema_version": "1.0.0", "subject": "agent:test", "provenance": [], "sequence": 1, "policy_context": {"policy_bundle_digest": H}, "capability_context": [], "decision": "pass", "evidence_refs": [], "digest": H},
+    "drift-finding": {"schema_version": "1.0.0", "finding_id": "drift:1", "drift_class": "capability drift", "verdict": "warn", "explanation": "Capability scope expanded.", "evidence_refs": ["evidence:runtime:1"], "fingerprint": H, "before": "workspace/src/**", "after": "**"},
+    "evaluation-decision": {"schema_version": "1.0.0", "decision_id": "evaluation:1", "subject": "agent:test", "verdict": "warn", "findings": [{"schema_version": "1.0.0", "finding_id": "drift:1", "drift_class": "capability drift", "verdict": "warn", "explanation": "Capability scope expanded.", "evidence_refs": ["evidence:runtime:1"], "fingerprint": H}], "evidence_refs": ["evidence:runtime:1"], "digest": H, "diagnostics": []},
 }
 
 INVALID_EXAMPLES = {
@@ -427,6 +502,10 @@ INVALID_EXAMPLES = {
     "bundle-manifest.ads-colon": ("bundle-manifest", {**EXAMPLES["bundle-manifest"], "entries": [{"path": "events.jsonl:stream", "sha256": H, "size_bytes": 1}]}),
     "bundle-manifest.oversize-entry": ("bundle-manifest", {**EXAMPLES["bundle-manifest"], "entries": [{"path": "huge.bin", "sha256": H, "size_bytes": 268435457}]}),
     "trust-diff.bad-change-type": ("trust-diff", {**EXAMPLES["trust-diff"], "changes": [{"change_type": "MAGIC_SCORE_CHANGED", "severity": "high", "explanation": "invalid"}]}),
+    "evidence-reference.bad-digest": ("evidence-reference", {**EXAMPLES["evidence-reference"], "digest": "not-a-digest"}),
+    "evidence-envelope.negative-sequence": ("evidence-envelope", {**EXAMPLES["evidence-envelope"], "sequence": -1}),
+    "drift-finding.bad-class": ("drift-finding", {**EXAMPLES["drift-finding"], "drift_class": "unknown drift"}),
+    "evaluation-decision.bad-verdict": ("evaluation-decision", {**EXAMPLES["evaluation-decision"], "verdict": "maybe"}),
 }
 
 FIXTURE_DATA = [

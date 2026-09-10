@@ -51,6 +51,8 @@ jobs:
           retention-days: 30
       - name: Verify normative semantic requirements
         run: python contracts/tools/validate_semantics.py
+      - name: Validate normative conformance invariants
+        run: python contracts/tools/validate_conformance.py
       - name: Verify deterministic regeneration
         shell: bash
         run: |

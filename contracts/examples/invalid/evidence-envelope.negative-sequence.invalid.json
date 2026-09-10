@@ -1,0 +1,16 @@
+{
+  "$document": {
+    "capability_context": [],
+    "decision": "pass",
+    "digest": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "evidence_refs": [],
+    "policy_context": {
+      "policy_bundle_digest": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    },
+    "provenance": [],
+    "schema_version": "1.0.0",
+    "sequence": -1,
+    "subject": "agent:test"
+  },
+  "$expected_schema": "evidence-envelope"
+}

@@ -5,6 +5,10 @@
 
 Versioned public data contracts for ProofDrift. This repository contains deterministic JSON Schemas, canonical positive/negative examples, reusable fixtures, and the generator/validator used to keep the contract reproducible.
 
+## Normative specification
+
+The implementation-independent normative contract is [SPECIFICATION.md](SPECIFICATION.md). It defines required field semantics, failure behavior, canonicalization/digest rules, the six drift classes, conformance levels, compatibility/version negotiation, and the threat model.
+
 ## Contract set
 
 The v1 set covers artifact identity, evidence values, capabilities, agent events, policy requests/decisions, findings, patch impact, test evidence, provenance edges, trust reports, evidence bundle manifests, baseline snapshots and trust diffs.
